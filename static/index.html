@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Emulador Historia Clínica</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Emulador - Historia Clínica (Estudiantes)</h1>
+
+    <!-- Crear Paciente -->
+    <section class="card">
+      <h2>Crear Paciente</h2>
+      <form id="patientForm">
+        <input name="firstName" placeholder="Nombre" required />
+        <input name="lastName" placeholder="Apellido" required />
+        <input name="dni" placeholder="DNI" />
+        <input name="birthDate" type="date" />
+        <input name="phone" placeholder="Teléfono" />
+        <input name="address" placeholder="Dirección" />
+        <select name="gender">
+          <option value="">Género</option>
+          <option>Masculino</option>
+          <option>Femenino</option>
+          <option>Otro</option>
+        </select>
+        <button type="submit">Guardar paciente</button>
+      </form>
+    </section>
+
+    <!-- Crear Historia Clínica -->
+    <section class="card">
+      <h2>Crear Historia Clínica</h2>
+      <form id="recordForm">
+        <select id="patientSelect" name="patientId" required>
+          <option value="" disabled selected>-- Selecciona paciente --</option>
+        </select>
+        <input name="nurse" placeholder="Nombre del estudiante (enfermería)" required />
+        <input name="reason" placeholder="Motivo de consulta" required />
+        <textarea name="anamnesis" placeholder="Anamnesis"></textarea>
+        <textarea name="physicalExam" placeholder="Examen físico"></textarea>
+        <textarea name="treatmentPlan" placeholder="Plan de tratamiento"></textarea>
+        <textarea name="notes" placeholder="Notas"></textarea>
+        <button type="submit">Guardar historia</button>
+      </form>
+    </section>
+
+    <!-- Historias guardadas -->
+    <section class="card">
+      <h2>Historias guardadas</h2>
+      <div id="recordsList">Cargando...</div>
+    </section>
+  </div>
+
+  <script>
+    // Cargar pacientes en el select
+    fetch('http://localhost:8080/api/patients')
+      .then(response => {
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return response.json();
+      })
+      .then(data => {
+        console.log("Pacientes recibidos:", data);
+        const select = document.getElementById('patientSelect');
+        select.innerHTML = '<option value="" disabled selected>-- Selecciona paciente --</option>'; // limpia y pone la opción inicial
+
+        data.forEach(patient => {
+          const option = document.createElement('option');
+          option.value = patient.id;
+          option.textContent = `${patient.firstName} ${patient.lastName}`;
+          select.appendChild(option);
+        });
+      })
+      .catch(err => {
+        console.error('Error cargando pacientes:', err);
+        alert("No se pudieron cargar los pacientes. Revisa la consola.");
+      });
+  </script>
+
+  <script src="app.js"></script>
+</body>
+</html>

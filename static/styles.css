@@ -1,0 +1,59 @@
+body {
+    font-family: system-ui, Segoe UI, Roboto, Arial;
+    margin: 0;
+    background: #f4f7fb;
+    color: #111;
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+/* ---------------------------*/
+.card {
+    background: white;
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    margin-bottom: 16px;
+}
+
+/* ---------------------------*/
+form input,
+form select,
+form textarea {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin: 6px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+/* ---------------------------*/
+button {
+    padding: 10px 14px;
+    border: none;
+    background: #1f7a8c;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.95;
+}
+
+/* ---------------------------*/
+#recordsList .record {
+    border-left: 4px solid #1f7a8c;
+    padding: 8px;
+    margin-bottom: 8px;
+    background: #fbfdff;
+}
