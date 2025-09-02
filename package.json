@@ -1,0 +1,13 @@
+{
+  "name": "historial-clinico",
+  "version": "1.0.0",
+  "description": "Sistema de historial clínico con almacenamiento local",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
